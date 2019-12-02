@@ -1,0 +1,5 @@
+mxsfb.c:48:13:mxsfb_system_setup	0	static
+mxsfb.c:56:5:mxs_lcd_panel_setup	4	static
+mxsfb.c:68:6:mxs_lcd_get_panel	0	static
+mxsfb.c:184:6:lcdif_power_down	16	static
+mxsfb.c:212:7:video_hw_init	88	static

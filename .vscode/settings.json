@@ -1,0 +1,20 @@
+{
+    "git.ignoreLimitWarning": true,
+    "files.associations": {
+        "*.inc": "c",
+        "nand.h": "c",
+        "jffs2.h": "c",
+        "mxs_nand.h": "c",
+        "errno.h": "c",
+        "regs-bch.h": "c",
+        "regs-gpmi.h": "c",
+        "rawnand.h": "c",
+        "type_traits": "cpp",
+        "io.h": "c",
+        "dma.h": "c",
+        "regs-apbh.h": "c",
+        "mtd.h": "c",
+        "common.h": "c",
+        "typeinfo": "c"
+    }
+}

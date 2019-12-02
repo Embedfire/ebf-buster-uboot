@@ -1,0 +1,15 @@
+devres.c:229:13:devm_kmalloc_release	0	static
+devres.c:234:12:devm_kmalloc_match	0	static
+devres.c:174:13:release_nodes	32	static
+devres.c:61:7:_devres_alloc	8	static
+devres.c:78:6:devres_free	8	static
+devres.c:88:6:devres_add	8	static
+devres.c:98:7:devres_find	32	static
+devres.c:114:7:devres_get	16	static
+devres.c:131:7:devres_remove	8	static
+devres.c:147:5:devres_destroy	8	static
+devres.c:160:5:devres_release	16	static
+devres.c:189:6:devres_release_probe	0	static
+devres.c:194:6:devres_release_all	0	static
+devres.c:239:7:devm_kmalloc	16	static
+devres.c:252:6:devm_kfree	8	static

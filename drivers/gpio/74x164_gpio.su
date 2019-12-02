@@ -1,0 +1,8 @@
+74x164_gpio.c:91:12:gen_74x164_direction_input	0	static
+74x164_gpio.c:102:12:gen_74x164_get_function	0	static
+74x164_gpio.c:107:12:gen_74x164_xlate	0	static
+74x164_gpio.c:62:12:gen_74x164_get_value	8	static
+74x164_gpio.c:45:12:gen_74x164_write_conf	24	static
+74x164_gpio.c:71:12:gen_74x164_set_value	16	static
+74x164_gpio.c:96:12:gen_74x164_direction_output	0	static
+74x164_gpio.c:125:12:gen_74x164_probe	72	static

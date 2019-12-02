@@ -1,0 +1,5 @@
+bootefi.c:168:21:efi_install_fdt	360	static
+bootefi.c:245:21:do_bootefi_exec	48	static
+bootefi.c:35:13:allow_unaligned	0	static
+bootefi.c:387:12:do_bootefi	24	static
+bootefi.c:506:6:efi_set_bootdev	40	static

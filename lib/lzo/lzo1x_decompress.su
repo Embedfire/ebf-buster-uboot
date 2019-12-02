@@ -1,0 +1,3 @@
+lzo1x_decompress.c:34:6:lzop_is_valid_header	0	static
+lzo1x_decompress.c:141:5:lzo1x_decompress_safe	32	static
+lzo1x_decompress.c:78:5:lzop_decompress	48	static

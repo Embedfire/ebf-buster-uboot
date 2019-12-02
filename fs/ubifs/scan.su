@@ -1,0 +1,7 @@
+scan.c:61:5:ubifs_scan_a_node	40	static
+scan.c:129:24:ubifs_start_scan	56	static
+scan.c:167:6:ubifs_end_scan	16	static
+scan.c:186:5:ubifs_add_snod	16	static
+scan.c:230:6:ubifs_scanned_corruption	48	static
+scan.c:359:6:ubifs_scan_destroy	16	static
+scan.c:259:24:ubifs_scan	56	static

@@ -1,0 +1,8 @@
+image-android.c:59:5:android_image_get_kernel	2680	static
+image-android.c:270:5:android_image_check_header	0	static
+image-android.c:275:7:android_image_get_end	4	static
+image-android.c:291:7:android_image_get_kload	0	static
+image-android.c:296:5:android_image_get_ramdisk	16	static
+image-android.c:315:5:android_image_get_second	16	static
+image-android.c:346:6:android_print_contents	40	static
+image-android.c:373:6:image_arm64	0	static

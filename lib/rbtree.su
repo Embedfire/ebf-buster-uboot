@@ -1,0 +1,11 @@
+rbtree.c:354:6:__rb_erase_color	24	static
+rbtree.c:376:6:rb_insert_color	4	static
+rbtree.c:382:6:rb_erase	12	static
+rbtree.c:398:6:__rb_insert_augmented	24	static
+rbtree.c:408:17:rb_first	0	static
+rbtree.c:421:17:rb_last	0	static
+rbtree.c:434:17:rb_next	0	static
+rbtree.c:466:17:rb_prev	0	static
+rbtree.c:495:6:rb_replace_node	0	static
+rbtree.c:524:17:rb_next_postorder	0	static
+rbtree.c:543:17:rb_first_postorder	0	static

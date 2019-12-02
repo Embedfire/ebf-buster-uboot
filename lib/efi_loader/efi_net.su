@@ -1,0 +1,17 @@
+efi_net.c:547:13:efi_net_push	0	static
+efi_net.c:561:20:efi_network_timer_notify	16	static
+efi_net.c:305:28:efi_net_nvdata	8	static
+efi_net.c:282:28:efi_net_mcastiptomac	8	static
+efi_net.c:260:28:efi_net_statistics	8	static
+efi_net.c:238:28:efi_net_station_address	8	static
+efi_net.c:215:28:efi_net_receive_filters	8	static
+efi_net.c:86:28:efi_net_stop	8	static
+efi_net.c:56:28:efi_net_start	8	static
+efi_net.c:325:28:efi_net_get_status	16	static
+efi_net.c:451:28:efi_net_receive	40	static
+efi_net.c:380:28:efi_net_transmit	24	static
+efi_net.c:181:28:efi_net_shutdown	8	static
+efi_net.c:118:28:efi_net_initialize	16	static
+efi_net.c:163:28:efi_net_reset	8	static
+efi_net.c:529:6:efi_net_set_dhcp_ack	16	static
+efi_net.c:589:14:efi_net_register	32	static

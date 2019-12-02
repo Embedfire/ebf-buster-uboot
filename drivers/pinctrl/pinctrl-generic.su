@@ -1,0 +1,2 @@
+pinctrl-generic.c:298:12:pinctrl_generic_set_state_subnode	80	static
+pinctrl-generic.c:342:5:pinctrl_generic_set_state	24	static

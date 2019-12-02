@@ -1,0 +1,8 @@
+common.c:33:5:env_get_yesno	8	static
+common.c:46:7:env_get_default	16	static
+common.c:61:6:set_default_env	24	static
+common.c:91:5:set_default_vars	24	static
+common.c:107:5:env_import	40	static
+common.c:202:5:env_export	48	static
+common.c:223:6:env_relocate	8	static
+common.c:244:5:env_complete	48	static

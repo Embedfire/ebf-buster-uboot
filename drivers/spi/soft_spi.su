@@ -1,0 +1,8 @@
+soft_spi.c:89:12:soft_spi_release_bus	0	static
+soft_spi.c:177:12:soft_spi_set_speed	0	static
+soft_spi.c:183:12:soft_spi_set_mode	8	static
+soft_spi.c:38:12:soft_spi_scl	8	static
+soft_spi.c:80:12:soft_spi_claim_bus	0	static
+soft_spi.c:107:12:soft_spi_xfer	40	static
+soft_spi.c:200:12:soft_spi_ofdata_to_platdata	8	static
+soft_spi.c:211:12:soft_spi_probe	24	static

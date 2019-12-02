@@ -1,0 +1,5 @@
+spi-mem.c:105:12:spi_check_buswidth_req.isra.0	0	static
+spi-mem.c:134:6:spi_mem_default_supports_op	16	static
+spi-mem.c:172:6:spi_mem_supports_op	0	static
+spi-mem.c:197:5:spi_mem_exec_op	40	static
+spi-mem.c:410:5:spi_mem_adjust_op_size	4	static

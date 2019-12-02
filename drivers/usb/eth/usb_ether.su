@@ -1,0 +1,5 @@
+usb_ether.c:19:5:usb_ether_register	16	static
+usb_ether.c:90:5:usb_ether_deregister	0	static
+usb_ether.c:95:5:usb_ether_receive	32	static
+usb_ether.c:121:6:usb_ether_advance_rxbuf	0	static
+usb_ether.c:128:5:usb_ether_get_rx_bytes	0	static

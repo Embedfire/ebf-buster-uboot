@@ -1,0 +1,14 @@
+.imx6ull-14x14-ddr3-arm2-tsc.dtb.pre.o: \
+ arch/arm/dts/.imx6ull-14x14-ddr3-arm2-tsc.dtb.pre.tmp \
+ include/linux/kconfig.h include/generated/autoconf.h \
+ arch/arm/dts/imx6ull-14x14-ddr3-arm2-lcdif.dts \
+ arch/arm/dts/imx6ull-14x14-ddr3-arm2.dts \
+ arch/arm/dts/include/dt-bindings/input/input.h \
+ arch/arm/dts/include/dt-bindings/input/linux-event-codes.h \
+ arch/arm/dts/imx6ull.dtsi \
+ arch/arm/dts/include/dt-bindings/clock/imx6ul-clock.h \
+ arch/arm/dts/include/dt-bindings/gpio/gpio.h \
+ arch/arm/dts/include/dt-bindings/interrupt-controller/arm-gic.h \
+ arch/arm/dts/include/dt-bindings/interrupt-controller/irq.h \
+ arch/arm/dts/imx6ull-pinfunc.h arch/arm/dts/imx6ul-pinfunc.h \
+ arch/arm/dts/imx6ull-pinfunc-snvs.h arch/arm/dts/skeleton.dtsi

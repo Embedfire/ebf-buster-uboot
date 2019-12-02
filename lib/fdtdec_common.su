@@ -1,0 +1,2 @@
+fdtdec_common.c:21:5:fdtdec_get_int	16	static
+fdtdec_common.c:39:14:fdtdec_get_uint	16	static

@@ -1,0 +1,3 @@
+hexdump.c:52:5:hex_dump_to_buffer	72	static
+hexdump.c:182:6:print_hex_dump	192	static
+hexdump.c:225:6:print_hex_dump_bytes	24	static

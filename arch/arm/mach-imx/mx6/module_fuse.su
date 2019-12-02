@@ -1,0 +1,9 @@
+module_fuse.c:183:5:check_module_fused	4	static
+module_fuse.c:227:5:ft_system_setup	32	static
+module_fuse.c:263:5:mx6_esdhc_fused	0	static
+module_fuse.c:283:5:mx6_ecspi_fused	0	static
+module_fuse.c:303:5:mx6_uart_fused	0	static
+module_fuse.c:332:5:mx6_usb_fused	0	static
+module_fuse.c:338:5:mx6_qspi_fused	0	static
+module_fuse.c:355:5:mx6_i2c_fused	0	static
+module_fuse.c:373:5:mx6_enet_fused	0	static

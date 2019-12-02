@@ -1,0 +1,5 @@
+mtd_uboot.c:18:20:get_mtdids	8	static
+mtd_uboot.c:54:5:mtd_search_alternate_name	32	static
+mtd_uboot.c:200:5:mtd_probe_devices	72	static
+mtd_uboot.c:398:5:mtd_arg_off	48	static
+mtd_uboot.c:414:5:mtd_arg_off_size	56	static

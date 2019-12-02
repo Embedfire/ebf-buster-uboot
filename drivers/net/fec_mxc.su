@@ -1,0 +1,17 @@
+fec_mxc.c:426:13:fec_reg_setup	0	static
+fec_mxc.c:1261:12:fecmxc_free_pkt	8	static
+fec_mxc.c:1041:13:fec_free_descs	16	static
+fec_mxc.c:226:12:fec_phy_write	16	static
+fec_mxc.c:220:12:fec_phy_read	16	static
+fec_mxc.c:398:12:fecmxc_set_hwaddr	16	static
+fec_mxc.c:1253:12:fecmxc_read_rom_hwaddr	16	static
+fec_mxc.c:638:13:fecmxc_halt	16	static
+fec_mxc.c:1485:12:fecmxc_ofdata_to_platdata	24	static
+fec_mxc.c:1468:12:fecmxc_remove	8	static
+fec_mxc.c:682:12:fecmxc_send	24	static
+fec_mxc.c:152:13:fec_mii_setspeed.isra.8	16	static
+fec_mxc.c:566:12:fecmxc_init	32	static
+fec_mxc.c:833:12:fecmxc_recv	32	static
+fec_mxc.c:1054:17:fec_get_miibus	16	static
+fec_mxc.c:1330:12:fecmxc_probe	112	static
+fec_mxc.c:1080:13:init_clk_fec	0	static

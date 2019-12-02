@@ -1,0 +1,3 @@
+pinctrl-imx.c:17:12:imx_pinctrl_set_state	64	static
+pinctrl-imx.c:197:5:imx_pinctrl_probe	120	static
+pinctrl-imx.c:257:5:imx_pinctrl_remove	8	static

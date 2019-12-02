@@ -1,0 +1,2 @@
+epautoconf.c:219:16:usb_ep_autoconfig	32	static
+epautoconf.c:310:6:usb_ep_autoconfig_reset	0	static

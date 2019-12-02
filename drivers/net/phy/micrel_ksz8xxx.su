@@ -1,0 +1,7 @@
+micrel_ksz8xxx.c:135:12:ksz8895_startup	0	static
+micrel_ksz8xxx.c:161:5:ksz886x_config	0	static
+micrel_ksz8xxx.c:171:12:ksz886x_startup	0	static
+micrel_ksz8xxx.c:29:12:ksz_genconfig_bcastoff	16	static
+micrel_ksz8xxx.c:61:12:ksz8051_config	24	static
+micrel_ksz8xxx.c:121:5:ksz8895_config	16	static
+micrel_ksz8xxx.c:186:5:phy_micrel_ksz8xxx_init	8	static

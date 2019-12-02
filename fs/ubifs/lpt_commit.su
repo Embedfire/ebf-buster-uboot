@@ -1,0 +1,11 @@
+lpt_commit.c:156:12:alloc_lpt_leb	24	static
+lpt_commit.c:722:12:need_write_all	20	static
+lpt_commit.c:749:13:lpt_tgc_start	12	static
+lpt_commit.c:38:28:first_dirty_cnode	8	static
+lpt_commit.c:136:13:upd_ltab	24	static
+lpt_commit.c:626:28:pnode_lookup	24	static
+lpt_commit.c:666:13:do_make_pnode_dirty	16	static
+lpt_commit.c:1193:12:lpt_gc	56	static
+lpt_commit.c:1224:5:ubifs_lpt_start_commit	64	static
+lpt_commit.c:1351:5:ubifs_lpt_post_commit	24	static
+lpt_commit.c:1457:6:ubifs_lpt_free	32	static
