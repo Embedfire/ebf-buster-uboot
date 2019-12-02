@@ -1,0 +1,28 @@
+// SPDX-License-Identifier: GPL-2.0+
+ /*
+  * Copyright 2018 NXP
+  */
+
+/ {
+
+	aliases {
+		usb0 = &usb_dwc3_0;
+		usb1 = &usb_dwc3_1;
+	};
+};
+
+&usb3_0 {
+	compatible = "simple-bus";
+};
+
+&usb_dwc3_0 {
+	compatible = "fsl, imx8mq-dwc3";
+};
+
+&usb3_1 {
+	compatible = "simple-bus";
+};
+
+&usb_dwc3_1 {
+	compatible = "fsl, imx8mq-dwc3";
+};

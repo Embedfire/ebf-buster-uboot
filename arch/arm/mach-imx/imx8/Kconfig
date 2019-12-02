@@ -1,0 +1,104 @@
+if ARCH_IMX8
+
+config RECOVER_SPL_DATA_SECTION
+	bool
+	help
+	  Save SPL DATA section for cold boot, restore at warm boot
+
+config IMX_SMMU
+	bool "Enable SMMU on i.MX8"
+	help
+	  Enable the SMMU for peripherals on i.MX8
+
+config AHAB_BOOT
+	bool "Support i.MX8 AHAB features"
+	help
+	  This option enables the support for AHAB secure boot.
+
+config BOOTAUX_RESERVED_MEM_BASE
+	hex "Define the reserved memory base address"
+	default 0x0
+	help
+	  reserve DDR memory for bootaux
+
+config BOOTAUX_RESERVED_MEM_SIZE
+	hex "Define the reserved memory size"
+	default 0x0
+	help
+	  This memory will be reserved by system and linux cannot access.
+
+config IMX8
+	bool
+
+config MU_BASE_SPL
+	hex "MU base address used in SPL"
+	default 0x5d1b0000
+	help
+	  SPL runs in EL3 mode, it use MU0_A to communicate with SCU.
+	  So we could not reuse the one in dts which is for normal U-Boot.
+
+config IMX8QM
+	select IMX8
+	select SUPPORT_SPL
+	select RECOVER_SPL_DATA_SECTION
+	bool
+
+config IMX8QXP
+	select IMX8
+	select SUPPORT_SPL
+	select RECOVER_SPL_DATA_SECTION
+	bool
+
+config SYS_SOC
+	default "imx8"
+
+config SMC_FUSE
+        bool "Call fuse commands through SMC"
+
+choice
+	prompt "i.MX8 board select"
+	optional
+
+config TARGET_IMX8QXP_MEK
+	bool "Support i.MX8QXP MEK board"
+	select BOARD_LATE_INIT
+	select IMX8QXP
+
+config TARGET_IMX8QM_MEK
+	bool "Support i.MX8QM MEK board"
+	select BOARD_LATE_INIT
+	select IMX8QM
+
+config TARGET_IMX8QM_LPDDR4_ARM2
+	bool "Support i.MX8QM lpddr4 validation board"
+	select BOARD_LATE_INIT
+	select IMX8QM
+
+config TARGET_IMX8QM_DDR4_ARM2
+	bool "Support i.MX8QM ddr4 validation board"
+	select BOARD_LATE_INIT
+	select IMX8QM
+
+config TARGET_IMX8QXP_LPDDR4_ARM2
+	bool "Support i.MX8QXP lpddr4 validation board"
+	select BOARD_LATE_INIT
+	select IMX8QXP
+
+config TARGET_IMX8QXP_DDR3_ARM2
+	bool "Support i.MX8QXP ddr3 validation board"
+	select BOARD_LATE_INIT
+	select IMX8QXP
+
+config TARGET_IMX8X_17X17_VAL
+	bool "Support i.MX8QXP/DX 17x17 validation board"
+	select BOARD_LATE_INIT
+	select IMX8QXP
+
+endchoice
+
+source "board/freescale/imx8qxp_mek/Kconfig"
+source "board/freescale/imx8qm_mek/Kconfig"
+source "board/freescale/imx8qxp_arm2/Kconfig"
+source "board/freescale/imx8qm_arm2/Kconfig"
+
+endif
