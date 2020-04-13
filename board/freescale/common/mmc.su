@@ -1,2 +1,0 @@
-mmc.c:26:12:mmc_map_to_kernel_blk	0	static
-mmc.c:31:6:board_late_mmc_env_init	80	static

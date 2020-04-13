@@ -1,2 +1,0 @@
-mxs_nand_dt.c:63:12:mxs_nand_dt_probe	48	static
-mxs_nand_dt.c:169:6:board_nand_init	16	static

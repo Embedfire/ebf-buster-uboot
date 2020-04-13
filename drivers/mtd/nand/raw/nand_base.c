@@ -3706,9 +3706,13 @@ static char nand_flag;
 int check_mmc_num(void)
 {
 	if(!nand_flag)
-	   return 2;
-	else 
-	   return 1;
+	{
+	    return 2;
+	}  
+	else
+	{		
+	    return 1;
+	}
 }
 /*
  * Get the flash and manufacturer id and lookup if the type is supported.

@@ -1,3 +1,0 @@
-efi_watchdog.c:22:20:efi_watchdog_timer_notify	8	static
-efi_watchdog.c:42:14:efi_set_watchdog	0	static
-efi_watchdog.c:61:14:efi_watchdog_register	24	static

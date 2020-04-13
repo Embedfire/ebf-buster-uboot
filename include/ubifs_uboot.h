@@ -14,6 +14,7 @@
 #ifndef __UBIFS_UBOOT_H__
 #define __UBIFS_UBOOT_H__
 
+
 int ubifs_init(void);
 int uboot_ubifs_mount(char *vol_name);
 void uboot_ubifs_umount(void);

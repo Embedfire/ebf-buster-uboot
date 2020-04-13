@@ -1,4 +1,0 @@
-efi_bootmgr.c:95:14:get_var.constprop	40	static
-efi_bootmgr.c:31:6:efi_deserialize_load_option	16	static
-efi_bootmgr.c:54:15:efi_serialize_load_option	32	static
-efi_bootmgr.c:169:7:efi_bootmgr_load	120	static

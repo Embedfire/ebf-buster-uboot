@@ -1,3 +1,0 @@
-gpio-regulator.c:93:12:gpio_regulator_set_value	16	static
-gpio-regulator.c:71:12:gpio_regulator_get_value	16	static
-gpio-regulator.c:26:12:gpio_regulator_ofdata_to_platdata	64	static

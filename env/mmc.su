@@ -1,7 +1,0 @@
-mmc.c:113:12:mmc_get_env_addr	152	static
-mmc.c:125:12:mmc_get_env_dev	0	static
-mmc.c:175:13:fini_mmc_for_env.isra.1	8	static
-mmc.c:131:13:mmc_get_env_part	0	static
-mmc.c:155:20:init_mmc_for_env	24	static
-mmc.c:199:12:env_mmc_save	65640	static
-mmc.c:307:12:env_mmc_load	65640	static

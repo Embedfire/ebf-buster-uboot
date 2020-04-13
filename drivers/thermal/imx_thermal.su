@@ -1,3 +1,0 @@
-imx_thermal.c:49:12:read_cpu_temperature	32	static
-imx_thermal.c:210:5:imx_thermal_get_temp	16	static
-imx_thermal.c:234:12:imx_thermal_probe	24	static

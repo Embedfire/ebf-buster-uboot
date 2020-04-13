@@ -14,7 +14,7 @@
 
 #include <errno.h>
 #include <malloc.h>
-
+#include <linux/string.h>
 #ifdef USE_HOSTCC		/* HOST build */
 # include <string.h>
 # include <assert.h>
@@ -789,7 +789,8 @@ int himport_r(struct hsearch_data *htab,
 	char *data, *sp, *dp, *name, *value;
 	char *localvars[nvars];
 	int i;
-
+	char *dt_start = "#overlay_start";
+	char *dt_end = "#overlay_end";
 	/* Test for correct arguments.  */
 	if (htab == NULL) {
 		__set_errno(EINVAL);
@@ -867,15 +868,24 @@ int himport_r(struct hsearch_data *htab,
 		size -= ignored_crs;
 		dp = data;
 	}
+
 	/* Parse environment; allow for '\0' and 'sep' as separators */
 	do {
 		ENTRY e, *rv;
 
 		/* skip leading white space */
+		//跳过空白行
 		while (isblank(*dp))
 			++dp;
 
+		if (strncmp(dt_start,dp,14) == 0 ) {
+		while (*dp && (strncmp(dt_end,dp,12) != 0))
+			++dp;
+			dp = dp + 12;
+		}
+
 		/* skip comment lines */
+		//跳过注释行
 		if (*dp == '#') {
 			while (*dp && (*dp != sep))
 				++dp;
@@ -884,6 +894,7 @@ int himport_r(struct hsearch_data *htab,
 		}
 
 		/* parse name */
+		//解释参数名，遇到 "=" or "\n"停止
 		for (name = dp; *dp != '=' && *dp && *dp != sep; ++dp)
 			;
 

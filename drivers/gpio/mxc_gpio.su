@@ -1,7 +1,0 @@
-mxc_gpio.c:309:12:mxc_gpio_get_function	8	static
-mxc_gpio.c:291:12:mxc_gpio_get_value	8	static
-mxc_gpio.c:265:12:mxc_gpio_direction_input	8	static
-mxc_gpio.c:328:12:mxc_gpio_probe	40	static
-mxc_gpio.c:352:12:mxc_gpio_bind	16	static
-mxc_gpio.c:276:12:mxc_gpio_direction_output	16	static
-mxc_gpio.c:299:12:mxc_gpio_set_value	16	static

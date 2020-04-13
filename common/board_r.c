@@ -435,6 +435,8 @@ static int should_load_env(void)
 
 static int initr_env(void)
 {
+	char *p;
+
 	/* initialize environment */
 	if (should_load_env())
 		env_relocate();
@@ -444,7 +446,19 @@ static int initr_env(void)
 	env_set_hex("fdtcontroladdr",
 		    (unsigned long)map_to_sysmem(gd->fdt_blob));
 #endif
-
+	if(1 == check_mmc_num())
+	{
+		env_set("storage_media","init=/opt/scripts/tools/Nand/init-Nand-flasher-v1.sh");
+		p = env_get("storage_media");
+		printf("WARNING:%s\n",p);
+	}
+	else
+	{
+		env_set("storage_media","init=/opt/scripts/tools/eMMC/init-eMMC-flasher-v3.sh");
+		p = env_get("storage_media");
+		printf("WARNING:%s\n",p);
+	}
+	
 	/* Initialize from environment */
 	load_addr = env_get_ulong("loadaddr", 16, load_addr);
 

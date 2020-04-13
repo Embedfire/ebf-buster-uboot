@@ -1,5 +1,0 @@
-cache.c:80:12:parse_argv	8	static
-cache.c:16:13:invalidate_icache_all	0	static
-cache.c:22:12:do_icache	8	static
-cache.c:48:13:flush_dcache_all	0	static
-cache.c:54:12:do_dcache	8	static

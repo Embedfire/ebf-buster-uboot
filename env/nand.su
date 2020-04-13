@@ -1,3 +1,0 @@
-nand.c:62:12:env_nand_init	0	static
-nand.c:352:12:env_nand_load	65664	static
-nand.c:183:12:env_nand_save	65656	static

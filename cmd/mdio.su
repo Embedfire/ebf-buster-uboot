@@ -1,2 +1,0 @@
-mdio.c:25:12:extract_range	24	static
-mdio.c:183:12:do_mdio	128	static

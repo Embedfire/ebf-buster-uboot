@@ -1,9 +1,0 @@
-efi_hii_config.c:99:1:extract_config_access	8	static
-efi_hii_config.c:110:1:route_config_access	8	static
-efi_hii_config.c:120:1:form_callback	8	static
-efi_hii_config.c:79:1:get_alt_config	8	static
-efi_hii_config.c:66:1:config_to_block	8	static
-efi_hii_config.c:52:1:block_to_config	8	static
-efi_hii_config.c:42:1:route_config	8	static
-efi_hii_config.c:33:1:export_config	8	static
-efi_hii_config.c:22:1:extract_config	8	static

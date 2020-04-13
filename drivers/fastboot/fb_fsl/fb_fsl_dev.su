@@ -1,6 +1,0 @@
-fb_fsl_dev.c:64:17:mmc_sparse_reserve	0	static
-fb_fsl_dev.c:22:17:mmc_sparse_write	40	static
-fb_fsl_dev.c:70:5:write_backup_gpt	16	static
-fb_fsl_dev.c:139:13:process_flash_blkdev	328	static
-fb_fsl_dev.c:429:6:fastboot_process_erase	152	static
-fb_fsl_dev.c:444:6:fastboot_process_flash	8	static

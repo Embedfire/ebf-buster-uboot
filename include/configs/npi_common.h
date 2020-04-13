@@ -53,7 +53,7 @@
 	"importbootenv=echo Importing environment from ${devtype} ...; " \
 		"env import -t ${loadaddr} ${filesize}\0" \
 	"loadbootenv=load ${devtype} ${bootpart} ${loadaddr} ${bootenvfile}\0" \
-	"nandbootnev= ubifsload ${loadaddr} ${bootenvfile}\0"\
+	"nandbootnev= ubifsload ${loadaddr} /boot/${bootenvfile}\0"\
 	"loadimage=load ${devtype} ${bootpart} ${loadaddr} ${bootdir}/${bootfile}\0" \
 	"loadnandimage=ubifsload ${loadaddr} ${bootdir}/${bootfile}\0" \
 	"loadubird=ubifsload ${rdaddr} ${bootdir}/${rdfile}; setenv rdsize ${filesize}\0" \
@@ -185,6 +185,11 @@
 				"echo Loaded script from ${scriptfile};" \
 				"run bootscript;" \
 			"fi; " \
+			"echo Checking if flash_firmware is set;" \
+				"if test -n ${flash_firmware}; then "  \
+					"echo setting flash firmware...;"  \
+					"setenv cmdline ${storage_media};"  \
+				"fi;" \
 			"echo Checking for: /boot/uEnv.txt ...;" \
 			"for i in 1 2 3 4 5 6 7 ; do " \
 				"setenv mmcpart ${i};" \
@@ -223,7 +228,6 @@
 		"fi;" \
 		"if test -e ${devtype} ${bootpart} ${bootdir}/${bootfile}; then " \
 			"echo loading ${bootdir}/${bootfile} ...; "\
-			"run loadimage;" \
 			"setenv fdtdir ${bootdir}/dtbs/${uname_r}; " \
 			"echo debug: [enable_uboot_overlays=${enable_uboot_overlays}] ... ;" \
 			"if test -n ${enable_uboot_overlays}; then " \
@@ -267,49 +271,11 @@
 					"setenv fdt_buffer ${uboot_fdt_buffer};" \
 				"fi;" \
 				"echo uboot_overlays: [fdt_buffer=${fdt_buffer}] ... ;" \
-				"if test -n ${uboot_silicon}; then " \
-					"setenv uboot_overlay ${uboot_silicon}; " \
-					"run virtualloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_model}; then " \
-					"setenv uboot_overlay ${uboot_model}; " \
-					"run virtualloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr0}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr0}; " \
-					"run capeloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr1}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr1}; " \
-					"run capeloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr2}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr2}; " \
-					"run capeloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr3}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr3}; " \
-					"run capeloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr4}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr4}; " \
-					"run capeloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr5}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr5}; " \
-					"run capeloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr6}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr6}; " \
-					"run capeloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr7}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr7}; " \
-					"run capeloadoverlay;" \
-				"fi;" \
+				"dtfile ${fdtaddr} ${rdaddr} uEnv.txt ${loadaddr};"   \
 			"else " \
-				"echo uboot_overlays: add [enable_uboot_overlays=1] to /boot/uEnv.txt to enable...;" \
+				"echo uboot_overlays: add [enable_uboot_overlays=1] to /uEnv.txt to enable...;" \
 			"fi;" \
+			"run loadimage;" \
 			"setenv rdfile initrd.img-${uname_r}; " \
 			"if test -e ${devtype} ${bootpart} ${bootdir}/${rdfile}; then " \
 				"echo loading ${bootdir}/${rdfile} ...; "\
@@ -359,10 +325,10 @@
 			"if test -e ${devtype} ${bootpart} /etc/fstab; then " \
 				"setenv ubipart 1;" \
 			"fi; " \
-			"echo Checking for: /uEnv.txt ...;" \
-			"if test -e ${devtype} ${bootpart} /uEnv.txt; then " \
+			"echo Checking for: uEnv.txt ...;" \
+			"if test -e ${devtype} ${bootpart} uEnv.txt; then " \
 				"if run nandbootnev; then " \
-					"echo Loaded environment from /uEnv.txt;" \
+					"echo Loaded environment from uEnv.txt;" \
 					"run importbootenv;" \
 				"fi;" \
 				"echo Checking if client_ip is set ...;" \
@@ -432,7 +398,6 @@
 		"fi;" \
 		"if test -e ${devtype} ${bootpart} ${bootdir}/${bootfile}; then " \
 			"echo loading ${bootdir}/${bootfile} ...; "\
-			"run loadnandimage;" \
 			"setenv fdtdir ${bootdir}/dtbs/${uname_r}; " \
 			"echo debug: [enable_uboot_overlays=${enable_uboot_overlays}] ... ;" \
 			"if test -n ${enable_uboot_overlays}; then " \
@@ -476,49 +441,11 @@
 					"setenv fdt_buffer ${uboot_fdt_buffer};" \
 				"fi;" \
 				"echo uboot_overlays: [fdt_buffer=${fdt_buffer}] ... ;" \
-				"if test -n ${uboot_silicon}; then " \
-					"setenv uboot_overlay ${uboot_silicon}; " \
-					"run virtualubiloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_model}; then " \
-					"setenv uboot_overlay ${uboot_model}; " \
-					"run virtualubiloadoverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr0}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr0}; " \
-					"run capeloadubioverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr1}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr1}; " \
-					"run capeloadubioverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr2}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr2}; " \
-					"run capeloadubioverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr3}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr3}; " \
-					"run capeloadubioverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr4}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr4}; " \
-					"run capeloadubioverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr5}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr5}; " \
-					"run capeloadubioverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr6}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr6}; " \
-					"run capeloadubioverlay;" \
-				"fi;" \
-				"if test -n ${uboot_overlay_addr7}; then " \
-					"setenv uboot_overlay ${uboot_overlay_addr7}; " \
-					"run capeloadubioverlay;" \
-				"fi;" \
+				"dtfile ${fdtaddr} ${rdaddr} /boot/uEnv.txt ${loadaddr};"   \
 			"else " \
 				"echo uboot_overlays: add [enable_uboot_overlays=1] to /boot/uEnv.txt to enable...;" \
 			"fi;" \
+			"run loadnandimage;" \
 			"setenv rdfile initrd.img-${uname_r}; " \
 			"if test -e ${devtype} ${bootpart} ${bootdir}/${rdfile}; then " \
 				"echo loading ${bootdir}/${rdfile} ...; "\
