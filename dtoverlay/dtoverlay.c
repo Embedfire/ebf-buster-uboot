@@ -2142,11 +2142,11 @@ void load_env_file(char* env_name,ulong file_addr,loff_t* len_read)
          {
             if(fs_read(env_name,file_addr,0,0,len_read)<0)
             {
-               dtoverlay_debug("** %s read error\n",env_name);
+               dtoverlay_debug("**MMC 0:1 %s read error\n",env_name);
             }
             else
             {
-               dtoverlay_debug("** %s file length:0x%x\n",env_name,(unsigned int)*len_read);
+               dtoverlay_debug("**MMC 0:1 %s file length:0x%x\n",env_name,(unsigned int)*len_read);
             }
          }
       else 
@@ -2154,15 +2154,34 @@ void load_env_file(char* env_name,ulong file_addr,loff_t* len_read)
 
          if(2 == check_mmc_num())
          {
-            fs_set_blk_dev("mmc", "1:1", FS_TYPE_ANY);
-            if(fs_read(env_name,file_addr,0,0,len_read)<0)
+           
+            //mfgtool下载eMMC
+            if(!fs_set_blk_dev("mmc", "1:2", FS_TYPE_ANY))
             {
-               dtoverlay_debug("** %s read error\n",env_name);
+               if(fs_read(env_name,file_addr,0,0,len_read)<0)
+               {
+                  dtoverlay_debug("**MMC 1:2 %s read error\n",env_name);
+               }
+               else
+               {
+                  dtoverlay_debug("**MMC 1:2 %s file length:0x%x\n",env_name,(unsigned int)*len_read);
+                  goto fin;
+               }
             }
-            else
+             //sd卡下载eMMC
+            if(!fs_set_blk_dev("mmc", "1:1", FS_TYPE_ANY))
             {
-               dtoverlay_debug("** %s file length:0x%x\n",env_name,(unsigned int)*len_read);
+               if(fs_read(env_name,file_addr,0,0,len_read)<0)
+               {
+                  dtoverlay_debug("**MMC 1:1 %s read error\n",env_name);
+               }
+               else
+               {
+                  dtoverlay_debug("**MMC 1:1 %s file length:0x%x\n",env_name,(unsigned int)*len_read);
+                   goto fin;
+               }
             }
+            
          }
          else
          {
@@ -2171,5 +2190,5 @@ void load_env_file(char* env_name,ulong file_addr,loff_t* len_read)
          }
       }
       
-      
+ fin:     return;
 }

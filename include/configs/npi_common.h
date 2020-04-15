@@ -271,7 +271,7 @@
 					"setenv fdt_buffer ${uboot_fdt_buffer};" \
 				"fi;" \
 				"echo uboot_overlays: [fdt_buffer=${fdt_buffer}] ... ;" \
-				"dtfile ${fdtaddr} ${rdaddr} uEnv.txt ${loadaddr};"   \
+				"dtfile ${fdtaddr} ${rdaddr}  ${bootdir}/uEnv.txt ${loadaddr};"   \
 			"else " \
 				"echo uboot_overlays: add [enable_uboot_overlays=1] to /uEnv.txt to enable...;" \
 			"fi;" \
