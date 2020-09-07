@@ -147,6 +147,5 @@ u-boot.map
 u-boot.srec
 u-boot.sym
 
-#make_deb.sh build
-build_image
+.config
 

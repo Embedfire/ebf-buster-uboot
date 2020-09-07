@@ -451,12 +451,27 @@
 	\
 	"distro_bootcmd=" BOOTENV_SET_SCSI_NEED_INIT                      \
 		BOOTENV_SET_NVME_NEED_INIT                                \
+                "if gpio get GPIO3_10;then "				  \
+                        "setenv boot_targets legacy_mmc0; "	          \
+                "else "                                                    \
+                        "setenv boot_targets legacy_mmc1; "                  \
+                         "run bootcmd_${boot_targets}; "                   \
+                "fi; "                                                      \
+                "if gpio get GPIO3_9;then "				  \
+                        "setenv boot_targets legacy_mmc0; "	          \
+                "else "                                                    \
+                        "setenv boot_targets ubi0; "                         \
+                        "run bootcmd_${boot_targets}; "                   \
+                "fi; "                                                    \
 		"for target in ${boot_targets}; do "                      \
 			"run bootcmd_${target}; "                         \
 		"done\0"
-
+                
 #ifndef CONFIG_BOOTCOMMAND
 #define CONFIG_BOOTCOMMAND "run distro_bootcmd"
 #endif
+
+
+
 
 #endif  /* _CONFIG_CMD_DISTRO_BOOTCMD_H */

@@ -11,7 +11,10 @@
 #include <errno.h>
 #include <dm.h>
 #include <asm/gpio.h>
-
+#include <malloc.h>
+#include <mapmem.h>
+#include <asm/io.h>
+#include <linux/ctype.h>
 __weak int name_to_gpio(const char *name)
 {
 	return simple_strtoul(name, NULL, 10);
@@ -22,6 +25,7 @@ enum gpio_cmd {
 	GPIOC_SET,
 	GPIOC_CLEAR,
 	GPIOC_TOGGLE,
+	GPIOC_GET,
 };
 
 #if defined(CONFIG_DM_GPIO) && !defined(gpio_status)
@@ -125,7 +129,6 @@ static int do_gpio(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 #ifdef CONFIG_DM_GPIO
 	bool all = false;
 #endif
-
 	if (argc < 2)
  show_usage:
 		return CMD_RET_USAGE;
@@ -170,6 +173,9 @@ static int do_gpio(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	case 't':
 		sub_cmd = GPIOC_TOGGLE;
 		break;
+	case 'g':
+		sub_cmd = GPIOC_GET;
+		break;
 	default:
 		goto show_usage;
 	}
@@ -204,7 +210,16 @@ static int do_gpio(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 	if (sub_cmd == GPIOC_INPUT) {
 		gpio_direction_input(gpio);
 		value = gpio_get_value(gpio);
-	} else {
+	}else if(sub_cmd == GPIOC_GET) {
+		//reinit GPIO3_9
+		writel(0x10b0, 0x20E03B4);
+		writel(0x5, 0x20E0128);
+		//reinit GPIO3_10
+		writel(0x10b0, 0x20E03B8);
+		writel(0x5,  0x20E012C);
+		//printf("MUX : 0x%x ,PAD:0x%x\n", readl(0x20E0128), readl(0x20E03B4));
+		value = gpio_get_value(gpio);	
+	}else {
 		switch (sub_cmd) {
 		case GPIOC_SET:
 			value = 1;
@@ -222,11 +237,23 @@ static int do_gpio(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 		}
 		gpio_direction_output(gpio, value);
 	}
-	printf("gpio: pin %s (gpio %u) value is ", str_gpio, gpio);
-	if (IS_ERR_VALUE(value))
-		printf("unknown (ret=%d)\n", value);
-	else
-		printf("%d\n", value);
+	if(sub_cmd == GPIOC_GET)
+	{
+		value = gpio_get_value(gpio);
+		if(value)
+		{
+			if (ret != -EBUSY)
+				gpio_free(gpio);			
+			return CMD_RET_FAILURE;
+		}		
+	}else {
+		printf("gpio: pin %s (gpio %u) value is ", str_gpio, gpio);
+		if (IS_ERR_VALUE(value))
+			printf("unknown (ret=%d)\n", value);
+		else
+			printf("%d\n", value);
+	}
+	
 	if (sub_cmd != GPIOC_INPUT && !IS_ERR_VALUE(value)) {
 		int nval = gpio_get_value(gpio);
 

@@ -35,6 +35,7 @@ SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 #include <part.h>
 #include <ubifs_uboot.h>
 #include <fs.h>
+#include <string.h>
 
 typedef enum
 {
@@ -1738,7 +1739,7 @@ error_exit:
    return NULL;
 
 }
-
+int boot_id = 0;
 DTBLOB_T *dtoverlay_load_dtb(ulong fdt, char* dt_file,int max_size)
 {
    DTBLOB_T *dtb = NULL;
@@ -1749,7 +1750,7 @@ DTBLOB_T *dtoverlay_load_dtb(ulong fdt, char* dt_file,int max_size)
    len = strlen(dt_file) - 5;
    if ((len > 0) && (strcmp(dt_file + len, ".dtbo") == 0))
    {
-      if (!fs_set_blk_dev("mmc", "0:2", FS_TYPE_ANY))
+      if (boot_id == 0 && !fs_set_blk_dev("mmc", "0:2", FS_TYPE_ANY))
          {
             if(fs_read(dt_file,fdt,0,0,&bytes_read)<0)
             {
@@ -2135,26 +2136,46 @@ void edit_dtparam(ulong fdt, char* dt_file,char *param[],char *param_val[],int n
    
 }
 
+struct bootdevice_table{
+    char *string;
+    int  idx;
+};
+
+static struct bootdevice_table bootdev_desc[3] = {
+    {"legacy_mmc0", 0},
+    {"legacy_mmc1", 1},
+    {"ubi0", 2},
+
+};
+
 
 void load_env_file(char* env_name,ulong file_addr,loff_t* len_read)
 {
-    if (!fs_set_blk_dev("mmc", "0:1", FS_TYPE_ANY))
-         {
-            if(fs_read(env_name,file_addr,0,0,len_read)<0)
-            {
-               dtoverlay_debug("**MMC 0:1 %s read error\n",env_name);
-            }
-            else
-            {
-               dtoverlay_debug("**MMC 0:1 %s file length:0x%x\n",env_name,(unsigned int)*len_read);
-            }
-         }
-      else 
-      {
+    int i = 0;    
+    char *buf = NULL;
+    buf = env_get("boot_targets");
 
-         if(2 == check_mmc_num())
-         {
-           
+    for(; i < sizeof(bootdev_desc)/sizeof(struct bootdevice_table); i++){
+        
+        if(!strcmp(bootdev_desc[i].string, buf))
+            boot_id = bootdev_desc[i].idx;
+    }	
+
+    if ( boot_id == 0 && !fs_set_blk_dev("mmc", "0:1", FS_TYPE_ANY) )
+    {
+        if(fs_read(env_name,file_addr,0,0,len_read)<0)
+        {
+           dtoverlay_debug("**MMC 0:1 %s read error\n",env_name);
+        }
+        else
+        {
+           dtoverlay_debug("**MMC 0:1 %s file length:0x%x\n",env_name,(unsigned int)*len_read);
+        }
+    }
+    else 
+    {
+        if(2 == check_mmc_num() && boot_id == 1)
+        {
             //mfgtool下载eMMC
             if(!fs_set_blk_dev("mmc", "1:2", FS_TYPE_ANY))
             {
@@ -2168,27 +2189,27 @@ void load_env_file(char* env_name,ulong file_addr,loff_t* len_read)
                   goto fin;
                }
             }
-             //sd卡下载eMMC
+            //sd卡下载eMMC
             if(!fs_set_blk_dev("mmc", "1:1", FS_TYPE_ANY))
             {
-               if(fs_read(env_name,file_addr,0,0,len_read)<0)
-               {
-                  dtoverlay_debug("**MMC 1:1 %s read error\n",env_name);
-               }
-               else
-               {
-                  dtoverlay_debug("**MMC 1:1 %s file length:0x%x\n",env_name,(unsigned int)*len_read);
-                   goto fin;
-               }
+                if(fs_read(env_name,file_addr,0,0,len_read)<0)
+                {
+                    dtoverlay_debug("**MMC 1:1 %s read error\n",env_name);
+                }
+                else
+                {
+                    dtoverlay_debug("**MMC 1:1 %s file length:0x%x\n",env_name,(unsigned int)*len_read);
+                    goto fin;
+                }
             }
             
-         }
-         else
-         {
+        }
+        else
+        {
             ubifs_load(env_name,file_addr,0);
             *len_read = 3000;
-         }
-      }
+        }
+    }
       
  fin:     return;
 }
