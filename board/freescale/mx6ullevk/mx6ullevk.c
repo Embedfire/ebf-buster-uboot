@@ -260,7 +260,7 @@ static iomux_v3_cfg_t const boot_pads[] = {
 
 int boot_gpio_init(void)
 {
-	printf("boot_gpio_init\n");
+	//printf("boot_gpio_init\n");
 
 	imx_iomux_v3_setup_multiple_pads(boot_pads, ARRAY_SIZE(boot_pads));
 
