@@ -680,6 +680,8 @@ static int run_main_loop(void)
 	return 0;
 }
 
+extern int boot_gpio_init(void);
+
 /*
  * We hope to remove most of the driver-related init and do it if/when
  * the driver is later used.
@@ -718,6 +720,7 @@ static init_fnc_t init_sequence_r[] = {
 #ifdef CONFIG_DM
 	initr_dm,
 #endif
+	boot_gpio_init,
 #if defined(CONFIG_ARM) || defined(CONFIG_NDS32) || defined(CONFIG_RISCV) || \
 	defined(CONFIG_SANDBOX)
 	board_init,	/* Setup chipselects */

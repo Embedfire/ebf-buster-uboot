@@ -252,6 +252,21 @@ int board_phy_config(struct phy_device *phydev)
 }
 #endif
 
+static iomux_v3_cfg_t const boot_pads[] = {
+	MX6_PAD_LCD_DATA04__GPIO3_IO09 | MUX_PAD_CTRL(NO_PAD_CTRL),
+	MX6_PAD_LCD_DATA05__GPIO3_IO10 | MUX_PAD_CTRL(NO_PAD_CTRL),
+};
+
+
+int boot_gpio_init(void)
+{
+	printf("boot_gpio_init\n");
+
+	imx_iomux_v3_setup_multiple_pads(boot_pads, ARRAY_SIZE(boot_pads));
+
+	return 0;
+}
+
 #ifdef CONFIG_VIDEO_MXS
 static iomux_v3_cfg_t const lcd_pads[] = {
 	MX6_PAD_LCD_CLK__LCDIF_CLK | MUX_PAD_CTRL(LCD_PAD_CTRL),

@@ -212,11 +212,11 @@ static int do_gpio(cmd_tbl_t *cmdtp, int flag, int argc, char * const argv[])
 		value = gpio_get_value(gpio);
 	}else if(sub_cmd == GPIOC_GET) {
 		//reinit GPIO3_9
-		writel(0x10b0, 0x20E03B4);
-		writel(0x5, 0x20E0128);
+		//writel(0x10b0, 0x20E03B4);
+		//writel(0x5, 0x20E0128);
 		//reinit GPIO3_10
-		writel(0x10b0, 0x20E03B8);
-		writel(0x5,  0x20E012C);
+		//writel(0x10b0, 0x20E03B8);
+		//writel(0x5,  0x20E012C);
 		//printf("MUX : 0x%x ,PAD:0x%x\n", readl(0x20E0128), readl(0x20E03B4));
 		value = gpio_get_value(gpio);	
 	}else {
